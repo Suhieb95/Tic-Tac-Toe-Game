@@ -36,10 +36,19 @@
           <div class="cell" data-index="8"></div>
         </div>
       </div>
-      <p id="current-player" class="element-center">
-        Current Player:
-        <span style="margin-left: 10px; margin-top: 3px; color: red">X</span>
-      </p>
+      <div class="element-center flex-col">
+        <p id="current-player">
+          Current Player:
+          <span style="margin-left: 2px; margin-top: 3px; color: red">X</span>
+        </p>
+        <button
+          class="reset-btn"
+          onclick="resetGame()"
+          style="margin-top: 20px"
+        >
+          Reset Game
+        </button>
+      </div>
     </div>
 
     <script src="tic-tac-toe.js" defer></script>

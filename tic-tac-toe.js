@@ -1,11 +1,17 @@
 const cells = document.querySelectorAll(".cell");
 const span = document.createElement("span");
 const currentPlayerText = document.getElementById("current-player");
+const resetBtn = document.querySelector(".reset-btn");
+
+span.style.color = "red";
+span.style.marginLeft = "10px";
+span.style.marginTop = "1px";
 
 let currentPlayer = "X";
 let isGameRunning = true;
 let winner = "";
 let board = Array.from({ length: 9 }, () => "");
+let isDraw = false;
 
 const winningCombo = [
   [0, 1, 2],
@@ -31,7 +37,6 @@ cells.forEach((ele) => {
           switchPlayer();
           ele.textContent = "O";
         }
-        console.log(board);
         checkWinner();
       }
     }
@@ -39,10 +44,6 @@ cells.forEach((ele) => {
 });
 
 function switchPlayer() {
-  span.style.color = "red";
-  span.style.marginLeft = "10px";
-  span.style.marginTop = "3px";
-
   if (isGameRunning) {
     if (currentPlayer === "X") {
       currentPlayer = "O";
@@ -82,6 +83,12 @@ function checkWinner() {
       break;
     }
   }
+  if (isGameRunning) {
+    isDraw = board.every((value) => value !== "");
+    if (isDraw) {
+      setWinner("Draw");
+    }
+  }
 }
 
 function setWinner(winner) {
@@ -90,6 +97,7 @@ function setWinner(winner) {
   currentPlayerText.innerText = "Game is Over, final winner is: ";
   span.innerText = `${winner}.`;
   currentPlayerText.appendChild(span);
+  resetBtn.style.display = "block";
 }
 
 function resetGame() {
@@ -98,6 +106,9 @@ function resetGame() {
   winner = "";
   board = Array.from({ length: 9 }, () => "");
   span.innerText = "X";
-  currentPlayerText.innerText = "Current Player:";
+  currentPlayerText.innerText = "Current Player: ";
   currentPlayerText.appendChild(span);
+  cells.forEach((cell) => (cell.textContent = ""));
+  resetBtn.style.display = "none";
+  isDraw = false;
 }
