@@ -3,7 +3,6 @@ const span = document.createElement("span");
 const currentPlayerText = document.getElementById("current-player");
 const resetBtn = document.querySelector(".reset-btn");
 
-span.style.color = "red";
 span.style.marginLeft = "5px";
 
 let currentPlayer = "X";
@@ -46,20 +45,28 @@ function switchPlayer() {
   if (isGameRunning) {
     if (currentPlayer === "X") {
       currentPlayer = "O";
-      span.innerText = "O";
+      span.innerText = "O.";
       currentPlayerText.innerText = `Current Player:`;
       currentPlayerText.appendChild(span);
     } else {
       currentPlayer = "X";
-      span.innerText = "X";
+      span.innerText = "X.";
       currentPlayerText.innerText = "Current Player:";
       currentPlayerText.appendChild(span);
     }
+    switchColor(currentPlayer);
+  }
+}
+function switchColor(player) {
+  if (player === "X") {
+    span.style.color = "#FF6B6B";
+  } else if (player === "O") {
+    span.style.color = "#A0E8B0";
   }
 }
 
 function isEmptyCell(cell) {
-  return cell.textContent === "";
+  return cell.innerHTML === "";
 }
 
 function fillBoard(cell) {
@@ -92,6 +99,15 @@ function setWinner(winner) {
   span.innerText = `${winner}.`;
   currentPlayerText.appendChild(span);
   resetBtn.style.display = "block";
+  setWinnerColor(winner);
+}
+
+function setWinnerColor(winner) {
+  if (winner === "X") {
+    span.style.color = "#FF6B6B";
+  } else if (winner === "O") {
+    span.style.color = "#A0E8B0";
+  }
 }
 
 function resetGame() {
@@ -99,8 +115,9 @@ function resetGame() {
   isGameRunning = true;
   winner = "";
   board = Array.from({ length: 9 }, () => "");
-  span.innerText = "X";
+  span.innerText = "X.";
   currentPlayerText.innerText = "Current Player:";
+  span.style.color = "#FF6B6B";
   currentPlayerText.appendChild(span);
   cells.forEach((cell) => (cell.textContent = ""));
   resetBtn.style.display = "none";
@@ -111,7 +128,8 @@ function enusreIsNotDraw() {
   if (isGameRunning) {
     isDraw = board.every((value) => value !== "");
     if (isDraw) {
-      setWinner("Draw");
+      span.style.color = "grey";
+      setWinner("Draw  :(");
     }
   }
 }

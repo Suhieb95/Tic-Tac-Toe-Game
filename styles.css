@@ -27,7 +27,7 @@
 }
 
 .O {
-    background-color: blue;
+    background-color: #A0E8B0;
     height: 90px;
     width: 90px;
     border-radius: 100%;
@@ -40,7 +40,7 @@
         content: "";
         border-radius: 100%;
         z-index: 150;
-        background-color: white;
+        background-color: #ffffff;
         height: 70px;
         width: 70px;
     }
@@ -56,7 +56,7 @@
         position: absolute;
         transform: rotate(-140deg);
         content: "";
-        background-color: red;
+        background-color: #FF6B6B;
         height: 100px;
         width: 15px;
     }
@@ -65,7 +65,7 @@
         position: absolute;
         transform: rotate(140deg);
         content: "";
-        background-color: red;
+        background-color: #FF6B6B;
         height: 100px;
         width: 15px;
     }
@@ -75,14 +75,16 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    border-radius: 5px;
+    border-radius: 15px;
     border: solid 3px #f1f1f1;
     box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
     height: 400px;
     width: 400px;
+    background-color:
+        #FAFAFA;
 
     .cell {
-        border: 2px solid black;
+        border: 2px solid #E0E0E0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -134,23 +136,23 @@
 }
 
 .reset-btn {
-    font-weight: bold;
-    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    font-weight: 900;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s, width 0.2s;
     padding: 8px;
     border: none;
     outline: none;
     color: white;
-    background-color: grey;
+    background-color: black;
     width: 200px;
     cursor: pointer !important;
     border-radius: 5px;
     display: none;
 
     &:hover {
-        background-color: orange;
-        color: black;
+        background-color: #FF6B6B;
         border: none;
-        transform: scale(1.1);
+        width: 250px;
+        transform: scale(1.05);
     }
 }
 
