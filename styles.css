@@ -26,6 +26,51 @@
     }
 }
 
+.O {
+    background-color: blue;
+    height: 90px;
+    width: 90px;
+    border-radius: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+        content: "";
+        border-radius: 100%;
+        z-index: 150;
+        background-color: white;
+        height: 70px;
+        width: 70px;
+    }
+}
+
+.X {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+        position: absolute;
+        transform: rotate(-140deg);
+        content: "";
+        background-color: red;
+        height: 100px;
+        width: 15px;
+    }
+
+    &::before {
+        position: absolute;
+        transform: rotate(140deg);
+        content: "";
+        background-color: red;
+        height: 100px;
+        width: 15px;
+    }
+}
+
 .tic-tac-toe-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

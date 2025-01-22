@@ -30,11 +30,11 @@ cells.forEach((ele) => {
         if (currentPlayer === "X") {
           fillBoard(ele);
           switchPlayer();
-          ele.textContent = "X";
+          drawX(ele);
         } else {
           fillBoard(ele);
           switchPlayer();
-          ele.textContent = "O";
+          drawO(ele);
         }
         checkWinner();
       }
@@ -114,4 +114,16 @@ function enusreIsNotDraw() {
       setWinner("Draw");
     }
   }
+}
+
+function drawX(cell) {
+  const x = document.createElement("div");
+  x.setAttribute("class", "X");
+  cell.appendChild(x);
+}
+
+function drawO(cell) {
+  const o = document.createElement("div");
+  o.setAttribute("class", "O");
+  cell.appendChild(o);
 }
