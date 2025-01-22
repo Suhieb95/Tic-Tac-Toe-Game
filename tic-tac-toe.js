@@ -4,8 +4,7 @@ const currentPlayerText = document.getElementById("current-player");
 const resetBtn = document.querySelector(".reset-btn");
 
 span.style.color = "red";
-span.style.marginLeft = "10px";
-span.style.marginTop = "1px";
+span.style.marginLeft = "5px";
 
 let currentPlayer = "X";
 let isGameRunning = true;
@@ -83,18 +82,13 @@ function checkWinner() {
       break;
     }
   }
-  if (isGameRunning) {
-    isDraw = board.every((value) => value !== "");
-    if (isDraw) {
-      setWinner("Draw");
-    }
-  }
+  enusreIsNotDraw();
 }
 
 function setWinner(winner) {
   winner = winner;
   isGameRunning = false;
-  currentPlayerText.innerText = "Game is Over, final winner is: ";
+  currentPlayerText.innerText = "Game is Over, final winner is:";
   span.innerText = `${winner}.`;
   currentPlayerText.appendChild(span);
   resetBtn.style.display = "block";
@@ -106,9 +100,18 @@ function resetGame() {
   winner = "";
   board = Array.from({ length: 9 }, () => "");
   span.innerText = "X";
-  currentPlayerText.innerText = "Current Player: ";
+  currentPlayerText.innerText = "Current Player:";
   currentPlayerText.appendChild(span);
   cells.forEach((cell) => (cell.textContent = ""));
   resetBtn.style.display = "none";
   isDraw = false;
+}
+
+function enusreIsNotDraw() {
+  if (isGameRunning) {
+    isDraw = board.every((value) => value !== "");
+    if (isDraw) {
+      setWinner("Draw");
+    }
+  }
 }
