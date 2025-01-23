@@ -81,15 +81,22 @@ function checkWinner() {
     const b = winningCombo[i][1];
     const c = winningCombo[i][2];
 
-    if (board[a] === "X" && board[b] === "X" && board[c] === "X") {
+    if (isXWon(a, b, c)) {
       setWinner("X");
       break;
-    } else if (board[a] === "O" && board[b] === "O" && board[c] === "O") {
+    } else if (isOWon(a, b, c)) {
       setWinner("O");
       break;
     }
   }
   enusreIsNotDraw();
+}
+
+function isXWon(a, b, c) {
+  return board[a] === "X" && board[b] === "X" && board[c] === "X";
+}
+function isOWon(a, b, c) {
+  return board[a] === "O" && board[b] === "O" && board[c] === "O";
 }
 
 function setWinner(winner) {
