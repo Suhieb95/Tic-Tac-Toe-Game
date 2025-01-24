@@ -33,16 +33,12 @@ cells.forEach((ele) => {
     if (isEmptyCell(ele)) {
       if (isGameRunning) {
         if (currentPlayer === "X") {
-          fillBoard(ele);
-          switchPlayer();
           drawX(ele);
-          audio.play();
         } else {
-          fillBoard(ele);
-          switchPlayer();
           drawO(ele);
-          audio.play();
         }
+        fillBoard(ele);
+        switchPlayer();
         checkWinner();
       }
     }
@@ -63,6 +59,7 @@ function switchPlayer() {
       currentPlayerText.appendChild(span);
     }
     switchColor(currentPlayer);
+    audio.play();
   }
 }
 function switchColor(player) {
