@@ -83,8 +83,10 @@ function checkWinner() {
 
     if (isXWon(a, b, c)) {
       setWinner("X");
+      paintWinnerDiv(a, b, c);
       break;
     } else if (isOWon(a, b, c)) {
+      paintWinnerDiv(a, b, c);
       setWinner("O");
       break;
     }
@@ -98,7 +100,17 @@ function isXWon(a, b, c) {
 function isOWon(a, b, c) {
   return board[a] === "O" && board[b] === "O" && board[c] === "O";
 }
-
+function paintWinnerDiv(a, b, c) {
+  cells.forEach((cell) => {
+    if (cell.getAttribute("data-index") == a) {
+      cell.style.backgroundColor = "#E0E0E0";
+    } else if (cell.getAttribute("data-index") == b) {
+      cell.style.backgroundColor = "#E0E0E0";
+    } else if (cell.getAttribute("data-index") == c) {
+      cell.style.backgroundColor = "#E0E0E0";
+    }
+  });
+}
 function setWinner(winner) {
   winner = winner;
   isGameRunning = false;
@@ -129,6 +141,9 @@ function resetGame() {
   cells.forEach((cell) => (cell.textContent = ""));
   resetBtn.style.display = "none";
   isDraw = false;
+  cells.forEach((cell) => {
+    cell.style.backgroundColor = "";
+  });
 }
 
 function enusreIsNotDraw() {
