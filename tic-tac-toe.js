@@ -2,8 +2,14 @@ const cells = document.querySelectorAll(".cell");
 const span = document.createElement("span");
 const currentPlayerText = document.getElementById("current-player");
 const resetBtn = document.querySelector(".reset-btn");
+let audio;
 
 span.style.marginLeft = "5px";
+
+document.addEventListener("DOMContentLoaded", () => {
+  audio = new Audio("./click-151673.mp3");
+  audio.load();
+});
 
 let currentPlayer = "X";
 let isGameRunning = true;
@@ -30,13 +36,11 @@ cells.forEach((ele) => {
           fillBoard(ele);
           switchPlayer();
           drawX(ele);
-          var audio = new Audio("./click-151673.mp3");
           audio.play();
         } else {
           fillBoard(ele);
           switchPlayer();
           drawO(ele);
-          var audio = new Audio("./click-151673.mp3");
           audio.play();
         }
         checkWinner();
