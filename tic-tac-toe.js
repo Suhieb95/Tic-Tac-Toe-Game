@@ -103,11 +103,11 @@ function isOWon(a, b, c) {
 function paintWinnerDiv(a, b, c) {
   cells.forEach((cell) => {
     if (cell.getAttribute("data-index") == a) {
-      cell.style.backgroundColor = "#E0E0E0";
+      cell.style.backgroundColor = "#d6d6d6";
     } else if (cell.getAttribute("data-index") == b) {
-      cell.style.backgroundColor = "#E0E0E0";
+      cell.style.backgroundColor = "#d6d6d6";
     } else if (cell.getAttribute("data-index") == c) {
-      cell.style.backgroundColor = "#E0E0E0";
+      cell.style.backgroundColor = "#d6d6d6";
     }
   });
 }
