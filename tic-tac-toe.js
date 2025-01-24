@@ -103,11 +103,11 @@ function isOWon(a, b, c) {
 function paintWinnerDiv(a, b, c) {
   cells.forEach((cell) => {
     if (cell.getAttribute("data-index") == a) {
-      cell.style.backgroundColor = "#d6d6d6";
+      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
     } else if (cell.getAttribute("data-index") == b) {
-      cell.style.backgroundColor = "#d6d6d6";
+      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
     } else if (cell.getAttribute("data-index") == c) {
-      cell.style.backgroundColor = "#d6d6d6";
+      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
     }
   });
 }
@@ -142,7 +142,7 @@ function resetGame() {
   resetBtn.style.display = "none";
   isDraw = false;
   cells.forEach((cell) => {
-    cell.style.backgroundColor = "";
+    cell.style.boxShadow = "";
   });
 }
 

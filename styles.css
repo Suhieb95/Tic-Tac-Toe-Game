@@ -90,6 +90,7 @@
         justify-content: center;
         text-align: center;
         font-size: 60px;
+        border-radius: 10px;
 
         &:hover {
             cursor: pointer;
