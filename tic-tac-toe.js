@@ -30,10 +30,14 @@ cells.forEach((ele) => {
           fillBoard(ele);
           switchPlayer();
           drawX(ele);
+          var audio = new Audio("./click-151673.mp3");
+          audio.play();
         } else {
           fillBoard(ele);
           switchPlayer();
           drawO(ele);
+          var audio = new Audio("./click-151673.mp3");
+          audio.play();
         }
         checkWinner();
       }
