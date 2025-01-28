@@ -162,13 +162,13 @@ function enusreIsNotDraw() {
 }
 
 function drawX(cell) {
-  const x = document.createElement("div");
+  const x = document.createElement("span");
   x.setAttribute("class", "X");
   cell.appendChild(x);
 }
 
 function drawO(cell) {
-  const o = document.createElement("div");
+  const o = document.createElement("span");
   o.setAttribute("class", "O");
   cell.appendChild(o);
 }
