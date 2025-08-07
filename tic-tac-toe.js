@@ -47,6 +47,7 @@ cells.forEach((ele) => {
 
 function switchPlayer() {
   if (isGameRunning) {
+    audio.play();
     if (currentPlayer === "X") {
       currentPlayer = "O";
       span.innerText = "O.";
@@ -59,7 +60,6 @@ function switchPlayer() {
       currentPlayerText.appendChild(span);
     }
     switchColor(currentPlayer);
-    audio.play();
   }
 }
 function switchColor(player) {
@@ -106,18 +106,19 @@ function isOWon(a, b, c) {
   return board[a] === "O" && board[b] === "O" && board[c] === "O";
 }
 function paintWinnerDiv(a, b, c) {
+  const shawdow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
   cells.forEach((cell) => {
     if (cell.getAttribute("data-index") == a) {
-      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
+      cell.style.boxShadow = shawdow;
     } else if (cell.getAttribute("data-index") == b) {
-      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
+      cell.style.boxShadow = shawdow;
     } else if (cell.getAttribute("data-index") == c) {
-      cell.style.boxShadow = "rgba(99, 99, 99, 1) 0px 2px 15px 0px";
+      cell.style.boxShadow = shawdow;
     }
   });
 }
-function setWinner(winner) {
-  winner = winner;
+function setWinner(playerWon) {
+  winner = playerWon;
   isGameRunning = false;
   currentPlayerText.innerText = "Game is Over, final winner is:";
   span.innerText = `${winner}.`;
