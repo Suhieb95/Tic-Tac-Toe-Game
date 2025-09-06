@@ -58,12 +58,9 @@ main {
             transform: translateY(51px) scale(1.1);
         }
 
-        &:-webkit-disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        &:disabled {
+        &[disabled] {
+            -webkit-appearance: none;
+            appearance: none;
             opacity: 0.6;
             cursor: not-allowed;
         }
