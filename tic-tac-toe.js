@@ -57,13 +57,16 @@ document.querySelector(".tic-tac-toe-body").addEventListener("click", () => {
 
 document.getElementById("undo-btn").addEventListener("click", () => {
   const undoMove = previousMoves.pop();
-  const pos = board.findIndex((_, i) => i == undoMove);
+  const pos = board.findIndex((_, i) => i === undoMove);
   if (pos !== -1) {
     document.querySelectorAll(".cell")[undoMove].firstElementChild.remove();
     board = board.map((val, i) => (i === pos ? "" : val));
+    switchPlayer();
   }
   undoBtn.disabled = previousMoves.length === 0;
 });
+
+resetBtn.addEventListener("click", resetGame);
 
 function switchPlayer() {
   if (isGameRunning) {
@@ -98,7 +101,7 @@ function fillBoard(cell) {
   if (isGameRunning) {
     const cellData = cell.getAttribute("data-index");
     board[cellData] = currentPlayer;
-    previousMoves.push(cellData);
+    previousMoves.push(parseInt(cellData));
   }
 }
 
