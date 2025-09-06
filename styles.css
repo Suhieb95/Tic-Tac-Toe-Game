@@ -11,6 +11,11 @@ body {
     font-optical-sizing: auto;
 }
 
+@layer base {
+    p {
+        color: black
+    }
+}
 
 main {
     max-width: 1920px;
@@ -229,7 +234,7 @@ main {
 
 .result-board {
     display: grid;
-    margin-top: 50px;
+    margin-top: 25px;
     font-weight: bold;
     font-size: 24px;
     justify-items: center;
