@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 let currentPlayer = "X";
 let isGameRunning = true;
 let winner = "";
-let board = Array.from({ length: 9 }, () => "");
+
+let board = getBoard();
+
 let isDraw = false;
 
 const winningCombo = [
@@ -57,12 +59,9 @@ document.querySelector(".tic-tac-toe-body").addEventListener("click", () => {
 
 document.getElementById("undo-btn").addEventListener("click", () => {
   const undoMove = previousMoves.pop();
-  const pos = board.findIndex((_, i) => i === undoMove);
-  if (pos !== -1) {
-    document.querySelectorAll(".cell")[undoMove].firstElementChild.remove();
-    board = board.map((val, i) => (i === pos ? "" : val));
-    switchPlayer();
-  }
+  document.querySelectorAll(".cell")[undoMove].firstElementChild.remove();
+  board[undoMove] = "";
+  switchPlayer();
   undoBtn.disabled = previousMoves.length === 0;
 });
 
@@ -181,7 +180,7 @@ function resetGame() {
   currentPlayer = "X";
   isGameRunning = true;
   winner = "";
-  board = Array.from({ length: 9 }, () => "");
+  board = getBoard();
   span.innerText = "X.";
   currentPlayerText.innerText = "Current Player:";
   span.style.color = "#FF6B6B";
@@ -198,7 +197,7 @@ function resetGame() {
 
 function enusreIsNotDraw() {
   if (isGameRunning) {
-    isDraw = board.every((value) => value !== "");
+    isDraw = Object.values(board).every((value) => value !== "");
     if (isDraw) {
       span.style.color = "grey";
       setWinner("Draw  :(");
@@ -216,4 +215,18 @@ function drawO(cell) {
   const o = document.createElement("span");
   o.setAttribute("class", "O");
   cell.appendChild(o);
+}
+
+function getBoard() {
+  return {
+    0: "",
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: "",
+    8: "",
+  };
 }
