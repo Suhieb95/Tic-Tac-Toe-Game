@@ -190,7 +190,7 @@ function resetGame() {
     cell.style.boxShadow = "";
   });
   undoBtn.disabled = true;
-  result = [];
+  previousMoves = [];
 }
 
 function enusreIsNotDraw() {
