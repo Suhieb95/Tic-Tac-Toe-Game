@@ -3,6 +3,8 @@ const span = document.createElement("span");
 const currentPlayerText = document.getElementById("current-player");
 const resetBtn = document.querySelector(".reset-btn");
 let audio;
+let previousMoves = [];
+let result = [];
 
 span.style.marginLeft = "5px";
 
@@ -45,6 +47,24 @@ cells.forEach((ele) => {
   });
 });
 
+const undoBtn = document.getElementById("undo-btn");
+document.querySelector(".tic-tac-toe-body").addEventListener("click", () => {
+  undoBtn.disabled = previousMoves.length === 0;
+  if (!isGameRunning) {
+    undoBtn.disabled = true;
+  }
+});
+
+document.getElementById("undo-btn").addEventListener("click", () => {
+  const undoMove = previousMoves.pop();
+  const pos = board.findIndex((_, i) => i == undoMove);
+  if (pos !== -1) {
+    document.querySelectorAll(".cell")[undoMove].firstElementChild.remove();
+    board = board.map((val, i) => (i === pos ? "" : val));
+  }
+  undoBtn.disabled = previousMoves.length === 0;
+});
+
 function switchPlayer() {
   if (isGameRunning) {
     audio.play();
@@ -76,7 +96,9 @@ function isEmptyCell(cell) {
 
 function fillBoard(cell) {
   if (isGameRunning) {
-    board[cell.getAttribute("data-index")] = currentPlayer;
+    const cellData = cell.getAttribute("data-index");
+    board[cellData] = currentPlayer;
+    previousMoves.push(cellData);
   }
 }
 
@@ -87,16 +109,33 @@ function checkWinner() {
     const c = winningCombo[i][2];
 
     if (isXWon(a, b, c)) {
-      setWinner("X");
       paintWinnerDiv(a, b, c);
+      setWinner("X");
+      setResult("X");
       break;
     } else if (isOWon(a, b, c)) {
       paintWinnerDiv(a, b, c);
       setWinner("O");
+      setResult("O");
       break;
     }
   }
   enusreIsNotDraw();
+}
+
+function setResult(winner) {
+  const resultEle = document.getElementById(
+    winner == "X" ? "x-result" : "o-result"
+  );
+  const playerwon = { player: winner, score: 1 };
+  const playerExists = result.find((res) => res.player === playerwon.player);
+  if (playerExists) {
+    playerExists.score += 1;
+    resultEle.innerText = `${winner}: ${playerExists.score}`;
+  } else {
+    result.push(playerwon);
+    resultEle.innerText = `${winner}: 1`;
+  }
 }
 
 function isXWon(a, b, c) {
@@ -150,6 +189,7 @@ function resetGame() {
   cells.forEach((cell) => {
     cell.style.boxShadow = "";
   });
+  undoBtn.disabled = true;
 }
 
 function enusreIsNotDraw() {
