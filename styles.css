@@ -12,7 +12,9 @@ body {
 }
 
 @layer base {
-    p {
+
+    p,
+    button {
         color: black
     }
 }
